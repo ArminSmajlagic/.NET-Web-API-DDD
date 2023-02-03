@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+    mongodb:
+        image: mongo
+        container_name: catalogdb
+        restart: unless-stopped
+        ports:
+            - 27017:27017
+        volumes:
+            - mongodbdata:/data/db
+        networks:
+            - bankNet
+
+    mssql:
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        container_name: mssql
+        restart: unless-stopped
+        environment:
+         - ACCEPT_EULA=Y
+         - MSSQL_PID=Developer
+         - SA_PASSWORD=Qwertz123
+        ports:
+          - 1433:1433
+        expose:
+         - 1433
+        networks:
+          - bankNet
+
+    logstash:
+        container_name: logstash
+        image: docker.elastic.co/logstash/logstash:7.13.0
+        ports:
+            - "5044:5044"
+            - "9600:9600"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        deploy:
+            mode: replicated
+            replicas: 1
+        depends_on:
+            - elasticsearch
+  
+    portainer:
+            image: portainer/portainer-ce
+            container_name: portainer
+            restart: unless-stopped
+            ports:
+                - 8080:8000
+                - 9000:9000
+            volumes:
+                - /var/run/docker.sock:/var/run/docker.sock
+                - portainerdata:/data
+
+    elasticsearch:
+        container_name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+        environment:
+            - xpack.monitoring.enabled=true
+            - xpack.watcher.enabled=false
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+            - discovery.type=single-node
+        ports:
+            - "9200:9200"
+        volumes:
+            - elasticsearchdata:/usr/share/elasticsearch/data 
+
+
+    kibana:
+        container_name: kibana
+        image: docker.elastic.co/kibana/kibana:7.16.1
+        environment:        
+            - ELASTICSEARCH_URL=http://elasticsearch:9200
+        ports:
+            - "5601:5601" 
+        depends_on:
+            - elasticsearch
+
+
+volumes:
+    mongodbdata:
+
+networks:
+    bankNet:
+        driver: bridge
