@@ -1,33 +1,49 @@
-﻿using Domain.Models.Common;
+﻿using Domain.Models;
+using Domain.Models.Common;
+using Domain.Repositories;
+using Domain.Repositories.Common;
 using Domain.Services.Contracts;
+using Infrastructure.RepoFactory;
 
 namespace Domain.Services.Implementations
 {
     public class AccountService : IAccountService
     {
+        private readonly IAccountRepository _accountRepository;
+        private readonly IFactory factory;
+
+        public AccountService(IFactory factory) {
+            this.factory = factory;
+            _accountRepository = factory.GetRepository("account");
+        }
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = _accountRepository.Delete(id);
+            return result;
         }
 
-        public List<BaseEntity> GetAll()
+        public IEnumerable<Account> GetAll()
         {
-            throw new NotImplementedException();
+            var result = _accountRepository.GetAll();
+            return result;
         }
 
-        public BaseEntity GetByID(int id)
+        public Account GetByID(int id)
         {
-            throw new NotImplementedException();
+            var result = _accountRepository.GetByID(id);
+            return result;
         }
 
-        public int Insert(BaseEntity entity)
+        public int Insert(Account entity)
         {
-            throw new NotImplementedException();
+            var result = _accountRepository.Insert(entity);
+            return result;
         }
 
-        public int Update(BaseEntity entity)
+        public int Update(Account entity)
         {
-            throw new NotImplementedException();
+            var result = _accountRepository.Update(entity);
+            return result;
         }
     }
 }

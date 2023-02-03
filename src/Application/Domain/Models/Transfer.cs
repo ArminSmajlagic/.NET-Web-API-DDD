@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    internal class Transfer : BaseEntity
+    public class Transfer : BaseEntity
     {
         public int Id { get; set; }
         public DateTime date { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class Account : BaseEntity, IAccount
+    public class Account : BaseEntity, IAccount, IEntity
     {
         public int Id { get; set; }
         public string FullName { get; set; }

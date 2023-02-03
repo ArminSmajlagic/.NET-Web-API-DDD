@@ -1,8 +1,9 @@
-﻿using Microsoft.Azure.ServiceBus;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Domain.Repositories;
+using Infrastructure.Caching.InMemory;
+using Infrastructure.RepoFactory;
+using Infrastructure.Repositories.Banking;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
 
 namespace Infrastructure.Extensions
 {
@@ -10,46 +11,33 @@ namespace Infrastructure.Extensions
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            //Redis Caching
             services.AddStackExchangeRedisCache(opts => { 
                 opts.Configuration = configuration.GetSection("RedisCaching:ConnectionString").ToString();
                 opts.InstanceName = "Banking";
             });
 
+            // .NET Caching
             services.AddMemoryCache();
 
-            services.AddSingleton<IQueueClient>(opts => new QueueClient("",""));
-            services.AddSingleton<ISubscriptionClient>(opts => new SubscriptionClient("",""));
+            // My primitive In-Memory data store for Caching
+            services.AddTransient<AnotherInMemoryStore>();
 
-            //Register repositories
+            //Registering repositoires
+            services.AddSingleton<IAccountRepository, AccountRepository>();
+            services.AddTransient<IBillingRepository, BillingRepository>();
+            services.AddScoped<ITransferRepository, TransferRepository>();
+            services.AddSingleton<ILoanRepository, LoanRepository>();
+
+            //Optional creation fo repositories with Factory
+            //services.AddSingleton<IFactory,RepositoryFactory>();
+
+            // Azure MQ - TODO specify connection string
+
+            //services.AddSingleton<IQueueClient>(opts => new QueueClient("",""));
+            //services.AddSingleton<ISubscriptionClient>(opts => new SubscriptionClient("",""));
 
             return services;
-        }
-
-        public static async Task SetRecordAsync<T>(this IDistributedCache cache, 
-            string recordID, 
-            T data, 
-            TimeSpan? expireTime = null, 
-            TimeSpan? unusedExpireTime = null) {
-            var options = new DistributedCacheEntryOptions();
-
-            options.AbsoluteExpirationRelativeToNow = expireTime ?? TimeSpan.FromSeconds(60);
-            options.SlidingExpiration = unusedExpireTime?? TimeSpan.FromSeconds(60);
-
-            var jsonData = JsonSerializer.Serialize(data);
-
-            await cache.SetStringAsync(recordID, jsonData);
-        }
-
-        public static async Task<T> GetRecordAsync<T>(this IDistributedCache cache,string recordID)
-        {
-            var result = await cache.GetStringAsync(recordID);
-
-            if(result == null)
-            {
-                return default;
-            }
-
-            return JsonSerializer.Deserialize<T>(result)!;
         }
     }
 }

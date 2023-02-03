@@ -1,16 +1,17 @@
-﻿using Domain.Models.Common;
+﻿using Domain.Models;
+using Domain.Models.Common;
 
 namespace Domain.Repositories.Common
 {
-    public interface IBaseRepository
+    public interface IBaseRepository<T>
     {
-        List<BaseEntity> GetAll();
+        IEnumerable<T> GetAll();
 
-        BaseEntity GetByID(int id);
+        T GetByID(int id);
 
-        int Insert(BaseEntity entity);
+        int Insert(T entity);
 
-        int Update(BaseEntity entity);
+        int Update(T entity);
 
         int Delete(int id);
     }

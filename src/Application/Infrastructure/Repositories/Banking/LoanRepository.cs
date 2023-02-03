@@ -1,4 +1,5 @@
-﻿using Domain.Models.Common;
+﻿using Domain.Models;
+using Domain.Models.Common;
 using Domain.Repositories;
 
 namespace Infrastructure.Repositories.Banking
@@ -11,22 +12,22 @@ namespace Infrastructure.Repositories.Banking
             throw new NotImplementedException();
         }
 
-        public List<BaseEntity> GetAll()
+        public IEnumerable<Loan> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public BaseEntity GetByID(int id)
+        public Loan GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(BaseEntity entity)
+        public int Insert(Loan entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(BaseEntity entity)
+        public int Update(Loan entity)
         {
             throw new NotImplementedException();
         }

@@ -2,15 +2,15 @@
 
 namespace Domain.Services.Contracts.Common
 {
-    public interface IBaseService
+    public interface IBaseService<T>
     {
-        List<BaseEntity> GetAll();
+        IEnumerable<T> GetAll();
 
-        BaseEntity GetByID(int id);
+        T GetByID(int id);
 
-        int Insert(BaseEntity entity);
+        int Insert(T entity);
 
-        int Update(BaseEntity entity);
+        int Update(T entity);
 
         int Delete(int id);
     }
