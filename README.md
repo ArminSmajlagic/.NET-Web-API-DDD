@@ -2,7 +2,7 @@
 
 
 # Description
-Banking Web API in .NET 7 &amp; C# 11  implemented with DDD, SOLID, DRY and heavly realying on design patterns. 
+Banking Web API in .NET 7 &amp; C# 11  implemented with DDD, SOLID, DRY and heavly relaying on design patterns. 
 Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, tests and so mucm more.
 
 
@@ -24,8 +24,8 @@ Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, test
 - MS SQL + SQL Server + EF
 
 <b>DevOps:</b>
-- Docker & Kubernetis
-- Teraforms (CI/CD)
+- Docker + Kubernetis
+- Teraforms + Azure (CI/CD)
 
 <b>Internet protocols:</b>
 - gRPC
@@ -35,12 +35,13 @@ Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, test
 <b>Other:</b>
 - XUnit tests
 - Azure MQ
-- Redis/ In-Memory Cachin
-- ELK Health monitoring
+- Redis/In-Memory Caching
+- ELK + Serilog (Logging - > Ingestion -> Transforming -> Visualazing)
 - OpenAPI 2.0
 
 # .NET 7 & C# 11 features
 
+- Records
 - Async/IProgres/CancelationToken
 - LINQ
 - span & memory
@@ -55,7 +56,6 @@ Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, test
 - Lambdas
 - Pattern matching
 - Custom Filters
-- Custom Records
 - Custom Attributes
 - Midlewere
 
@@ -63,7 +63,7 @@ Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, test
 
 Coming Soon!
 
-Author: Armin Smajlagiæ
+Author: Armin SmajlagiÃ¦
 
 
 
