@@ -1,4 +1,4 @@
-.NET DDD Web API - Currently under development!
+# .NET DDD Web API - Currently under development!
 
 ## Description
 This is anBanking Web API developed in .NET 7 &amp; C# 11. 
@@ -70,7 +70,7 @@ Main objective:
 - Default Interfaces
 - Extension Methodes
 - Generics
-- Covariance & Variance
+- Covariance & Contravariance
 - Lambdas
 - Pattern matching
 - Custom Filters
