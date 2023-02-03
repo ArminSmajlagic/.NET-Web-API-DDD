@@ -8,7 +8,7 @@ Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, test
 
 ## Design Patterns used in project
 
-- CQRS Repository
+- CQRS/Repository
 - Command
 - Observer
 - Mediator
@@ -24,44 +24,43 @@ Project includes SQL/NoSQL, gRPC/WebSockets/HTTP, Caching, Messeging Queue, test
 - MS SQL + SQL Server + EF
 
 <b>DevOps:</b>
-- Docker + Kubernetis
-- Teraforms + Azure (CI/CD)
+- Docker + Kubernetes
+- Teraform + Azure (CI/CD)
 
 <b>Internet protocols:</b>
 - gRPC
 - HTTP
-- WebSockets
+- WebSocket
 
 <b>Other:</b>
 - XUnit tests
 - Azure MQ
 - Redis/In-Memory Caching
 - ELK + Serilog (Logging - > Ingestion -> Transforming -> Visualazing)
-- OpenAPI 2.0
+- OpenAPI 2.0 with Swagger UI
 
 # .NET 7 & C# 11 features
 
 - Records
-- Async/IProgres/CancelationToken
-- LINQ
-- span & memory
-- IDisposable & Finalize
+- Async/IProgress<>/CancellationToken
+- LINQ expressions
+- Span<> & Memory<>
+- IDisposable & Finalizer 
 - ICollection & IQueryable
 - Tuples & Deconstructing
-- Default interfaces
+- Default Interfaces
 - Extension Methodes
-- ref & out
 - Generics
 - Covariance & Variance
 - Lambdas
 - Pattern matching
 - Custom Filters
 - Custom Attributes
-- Midlewere
+- Custom Midlewere
 
 ## Diagram
 
-Coming Soon!
+Coming Soon UML documentation & system block diagram!
 
 Author: Armin Smajlagiæ
 
