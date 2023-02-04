@@ -1,6 +1,5 @@
 ﻿using Domain.Repositories;
 using Infrastructure.Caching.InMemory;
-using Infrastructure.RepoFactory;
 using Infrastructure.Repositories.Banking;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,13 +22,13 @@ namespace Infrastructure.Extensions
             // My primitive In-Memory data store for Caching
             services.AddTransient<AnotherInMemoryStore>();
 
-            //Registering repositoires
+            //Registering repositoires - use directly in DI or use UOW(transaction pattern) repository members 
             services.AddSingleton<IAccountRepository, AccountRepository>();
             services.AddTransient<IBillingRepository, BillingRepository>();
             services.AddScoped<ITransferRepository, TransferRepository>();
             services.AddSingleton<ILoanRepository, LoanRepository>();
 
-            //Optional creation fo repositories with Factory
+            //Optional creation of repositories with Factory
             //services.AddSingleton<IFactory,RepositoryFactory>();
 
             // Azure MQ - TODO specify connection string

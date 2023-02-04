@@ -1,11 +1,18 @@
 ﻿using Domain.Models;
 using Domain.Models.Common;
 using Domain.Repositories;
+using System.Data;
 
 namespace Infrastructure.Repositories.Banking
 {
     public class TransferRepository : ITransferRepository
     {
+        private readonly IDbTransaction transaction;
+
+        public TransferRepository(IDbTransaction transaction)
+        {
+            this.transaction = transaction;
+        }
         //TODO implement stadnard methodes
         public int Delete(int id)
         {

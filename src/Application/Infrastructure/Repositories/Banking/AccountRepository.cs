@@ -2,11 +2,18 @@
 using Domain.Models.Common;
 using Domain.Repositories;
 using Domain.Repositories.Common;
+using System.Data;
 
 namespace Infrastructure.Repositories.Banking
 {
     public class AccountRepository : IAccountRepository
     {
+        private readonly IDbTransaction transaction;
+
+        public AccountRepository(IDbTransaction transaction)
+        {
+            this.transaction = transaction;
+        }
         //TODO implement stadnard methodes
         public int Delete(int id)
         {

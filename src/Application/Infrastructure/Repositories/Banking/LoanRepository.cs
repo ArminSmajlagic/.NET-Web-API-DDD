@@ -1,35 +1,57 @@
 ﻿using Domain.Models;
 using Domain.Models.Common;
 using Domain.Repositories;
+using Microsoft.Data.SqlClient;
 
 namespace Infrastructure.Repositories.Banking
 {
-    public class LoanRepository : ILoanRepository
+    public class LoanRepository : BaseRepository, ILoanRepository
     {
-        //TODO implement stadnard methodes
-        public int Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public LoanRepository(SqlTransaction transaction) : base(transaction){}
 
         public IEnumerable<Loan> GetAll()
         {
-            throw new NotImplementedException();
+            return new List<Loan>();
         }
 
         public Loan GetByID(int id)
         {
-            throw new NotImplementedException();
+            return new Loan();
         }
 
         public int Insert(Loan entity)
         {
-            throw new NotImplementedException();
+            SqlCommand command = Connection.CreateCommand();
+            command.Connection = Connection;
+            command.Transaction = Transaction;
+
+            command.CommandText = "";
+            var result = command.ExecuteNonQuery();
+
+            //Commit of the query is being done at UOW but services have to 
+            //Transaction.Commit();
+
+            return result;
         }
 
         public int Update(Loan entity)
         {
-            throw new NotImplementedException();
+            SqlCommand command = Connection.CreateCommand();
+            command.Connection = Connection;
+            command.Transaction = Transaction;
+
+            command.CommandText = "";
+            var result = command.ExecuteNonQuery();
+
+            //Commit of the query is being done at UOW and 
+            //Transaction.Commit();
+
+            return result;
+        }
+
+        public int Delete(int id)
+        {
+            return 0;
         }
     }
 }
