@@ -1,9 +1,7 @@
-﻿using Domain.Models;
-using Domain.Models.Common;
-using Domain.Services.Contracts;
-using Domain.Services.Contracts.Common;
+﻿using Domain.DomainServices.Contracts;
+using Domain.Models;
 
-namespace Domain.Services.Implementations
+namespace Domain.DomainServices.Implementations
 {
     internal class LoanService : ILoanService
     {

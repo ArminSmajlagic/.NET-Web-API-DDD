@@ -1,7 +1,6 @@
-﻿using MediatR;
+﻿using Application.Features.Queries.Accounts;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Application.Features.Queries.Accounts;
-
 
 namespace API.Controllers
 {
@@ -10,6 +9,7 @@ namespace API.Controllers
     public class AccountController : Controller
     {
         private readonly IMediator mediator;
+
         public AccountController(IMediator mediator)
         {
             this.mediator = mediator;
@@ -18,7 +18,6 @@ namespace API.Controllers
         [HttpGet("GetAccountById")]
         public async Task<IActionResult> GetUserById([FromQuery] int request)
         {
-
             var result = await mediator.Send(request);
 
             if (result == null)

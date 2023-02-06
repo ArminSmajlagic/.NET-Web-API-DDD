@@ -1,11 +1,6 @@
-﻿using Domain.Models;
-using Domain.Services.Contracts;
+﻿using Domain.DomainServices.Contracts;
+using Domain.Models;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Queries.Accounts
 {
@@ -17,6 +12,7 @@ namespace Application.Features.Queries.Accounts
         {
             this.service = service;
         }
+
         public async Task<IEnumerable<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
         {
             var result = service.GetAll();

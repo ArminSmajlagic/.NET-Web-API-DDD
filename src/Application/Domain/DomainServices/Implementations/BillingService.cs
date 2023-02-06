@@ -1,32 +1,31 @@
-﻿using Domain.Models;
-using Domain.Services.Contracts;
-using Domain.Services.Contracts.Common;
+﻿using Domain.DomainServices.Contracts;
+using Domain.Models;
 
-namespace Domain.Services.Implementations
+namespace Domain.DomainServices.Implementations
 {
-    public class TransferService : ITransferService
+    public class BillingService : IBillingService
     {
         public int Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Transfer> GetAll()
+        public IEnumerable<Bill> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Transfer GetByID(int id)
+        public Bill GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(Transfer entity)
+        public int Insert(Bill entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(Transfer entity)
+        public int Update(Bill entity)
         {
             throw new NotImplementedException();
         }

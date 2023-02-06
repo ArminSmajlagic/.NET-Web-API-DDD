@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
-
 namespace Infrastructure.Database
 {
     public class BillContext

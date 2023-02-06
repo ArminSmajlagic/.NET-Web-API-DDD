@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Infrastructure.MQ.AzureMQ
 {
-    public class MessageConsumer<T> : BackgroundService, IMessageConsumer where T : class
+    public class MessageConsumer<T> : BackgroundService where T : class
     {
         private readonly ISubscriptionClient client;
 
@@ -17,13 +17,14 @@ namespace Infrastructure.MQ.AzureMQ
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             //TODO defin topics
-            client.RegisterMessageHandler(async (msg, token) => {
+            client.RegisterMessageHandler(async (msg, token) =>
+            {
                 var message = JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(msg.Body));
 
                 Console.WriteLine(message);
 
                 await client.CompleteAsync(msg.SystemProperties.LockToken);
-            }, new MessageHandlerOptions(atgs=> Task.CompletedTask));
+            }, new MessageHandlerOptions(atgs => Task.CompletedTask));
 
             return Task.CompletedTask;
         }

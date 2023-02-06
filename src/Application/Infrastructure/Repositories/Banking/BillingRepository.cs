@@ -1,19 +1,19 @@
-﻿using Domain.Models;
-using Domain.Models.Common;
-using Domain.Repositories;
-using System.Data;
+﻿using Domain.Contracts.Repositories;
+using Domain.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Infrastructure.Repositories.Banking
 {
-    public class BillingRepository : IBillingRepository
+    public class BillingRepository : BaseRepository, IBillingRepository
     {
         //TODO implement stadnard methodes with mongoclient
-        private readonly IDbTransaction transaction;
+        public SqlTransaction Transaction { get; set; }
 
-        public BillingRepository(IDbTransaction transaction)
+        public BillingRepository(SqlTransaction transaction) : base(transaction)
         {
-            this.transaction = transaction;
+            Transaction = transaction;
         }
+
         public int Delete(int id)
         {
             throw new NotImplementedException();

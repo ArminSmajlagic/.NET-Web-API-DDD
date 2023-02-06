@@ -1,18 +1,18 @@
-﻿using Domain.Models;
-using Domain.Models.Common;
-using Domain.Repositories;
-using System.Data;
+﻿using Domain.Contracts.Repositories;
+using Domain.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Infrastructure.Repositories.Banking
 {
-    public class TransferRepository : ITransferRepository
+    public class TransferRepository : BaseRepository, ITransferRepository
     {
-        private readonly IDbTransaction transaction;
+        public SqlTransaction Transaction { get; set; }
 
-        public TransferRepository(IDbTransaction transaction)
+        public TransferRepository(SqlTransaction transaction) : base(transaction)
         {
-            this.transaction = transaction;
+            this.Transaction = transaction;
         }
+
         //TODO implement stadnard methodes
         public int Delete(int id)
         {

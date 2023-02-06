@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
 namespace Infrastructure.Caching.RedisExtension
@@ -28,7 +27,7 @@ namespace Infrastructure.Caching.RedisExtension
 
             if (result == null)
             {
-                return default;
+                return default!;
             }
 
             return JsonSerializer.Deserialize<T>(result)!;

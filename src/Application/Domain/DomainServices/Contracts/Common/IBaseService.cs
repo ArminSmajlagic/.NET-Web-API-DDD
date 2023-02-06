@@ -1,6 +1,4 @@
-﻿using Domain.Models.Common;
-
-namespace Domain.Services.Contracts.Common
+﻿namespace Domain.DomainServices.Contracts.Common
 {
     public interface IBaseService<T>
     {

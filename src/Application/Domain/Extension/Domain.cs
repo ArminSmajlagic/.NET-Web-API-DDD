@@ -1,8 +1,7 @@
-﻿using Domain.Services.Contracts;
-using Domain.Services.Implementations;
+﻿using Domain.DomainServices.Contracts;
+using Domain.DomainServices.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 
 namespace Domain.Extension
 {

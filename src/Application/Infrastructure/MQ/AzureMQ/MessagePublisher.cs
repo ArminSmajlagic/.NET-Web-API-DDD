@@ -12,7 +12,6 @@ namespace Infrastructure.MQ.AzureMQ
             QueueClient = queueClient;
         }
 
-
         public Task Publish<T>(T message)
         {
             //TODO implement generic publish
@@ -22,9 +21,9 @@ namespace Infrastructure.MQ.AzureMQ
 
         public async Task Publish(string raw)
         {
-           var message = new Message(Encoding.UTF8.GetBytes(raw));
-            
-           await QueueClient.SendAsync(message);
+            var message = new Message(Encoding.UTF8.GetBytes(raw));
+
+            await QueueClient.SendAsync(message);
         }
     }
 }

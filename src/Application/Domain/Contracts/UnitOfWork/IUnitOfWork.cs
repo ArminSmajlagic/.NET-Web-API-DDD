@@ -1,6 +1,6 @@
-﻿using Domain.Repositories;
+﻿using Domain.Contracts.Repositories;
 
-namespace Domain.UOW
+namespace Domain.Contracts.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -9,7 +9,6 @@ namespace Domain.UOW
         ILoanRepository LoanRepository { get; }
         ITransferRepository TransferRepository { get; }
 
-        void Commit();
-
+        int Commit();
     }
 }

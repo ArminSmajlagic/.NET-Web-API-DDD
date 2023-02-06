@@ -1,1 +1,1 @@
-﻿No DTOs for now! 
+﻿No Domain DTOs required for now! 
